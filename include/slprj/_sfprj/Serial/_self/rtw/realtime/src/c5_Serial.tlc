@@ -1,0 +1,64 @@
+%implements "chartSource" "C"
+%function ChartConfig(block, system) void
+  %createrecord chartConfiguration { ...
+          executeAtInitialization  0 ...
+  }
+  %return chartConfiguration
+%endfunction
+%function ChartDataMap(block, system) void
+  %createrecord ChartDataElements {\
+    NumChartData   7 \
+    ChartDataDefaults {\
+      RecordType   "ChartData"\
+      Dimensions   []\
+      IsTestPoint  0\
+    }\
+    ChartData {\
+      Name         "sfEvent"\
+      Description  "ActiveChartEvent"\
+      SFName       ""\
+      Path         ""\
+    }\
+    ChartData {\
+      Name         "isStable"\
+      Description  "IsstableBool"\
+      SFName       ""\
+      Path         ""\
+    }\
+    ChartData {\
+      Name         "is_active_c5_Serial"\
+      Description  "StateIsActive"\
+      SFName       "is_active_c5_Serial"\
+      Path         "is_active_c5_Serial"\
+      IsTestPoint  1\
+    }\
+    ChartData {\
+      Name         "is_c5_Serial"\
+      Description  "StateActiveChild"\
+      SFName       "is_c5_Serial"\
+      Path         "is_c5_Serial"\
+      IsTestPoint  1\
+    }\
+    ChartData {\
+      Name         "is_Disarmed"\
+      Description  "StateActiveChild"\
+      SFName       "is_Disarmed"\
+      Path         "Disarmed.is_Disarmed"\
+      IsTestPoint  1\
+    }\
+    ChartData {\
+      Name         "is_Armed"\
+      Description  "StateActiveChild"\
+      SFName       "is_Armed"\
+      Path         "Armed.is_Armed"\
+      IsTestPoint  1\
+    }\
+    ChartData {\
+      Name         "temporalCounter_i1"\
+      Description  "TemporalCounter"\
+      SFName       ""\
+      Path         ""\
+    }\
+  }
+  %return ChartDataElements
+%endfunction

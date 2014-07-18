@@ -1,0 +1,65 @@
+CC     = "C:\Program Files\MATLAB\R2014a\sys\lcc64\lcc64\bin\lcc64.exe"
+LD     = "C:\Program Files\MATLAB\R2014a\sys\lcc64\lcc64\bin\lcclnk64.exe"
+LIBCMD = "C:\Program Files\MATLAB\R2014a\sys\lcc64\lcc64\bin\lcclib64.exe"
+CFLAGS = -dll -noregistrylookup  -c -Zp8 -DLCC_WIN64 -DMATLAB_MEX_FILE -DMX_COMPAT_32 -nodeclspec 
+LDFLAGS = -s -dll -L"C:\Program Files\MATLAB\R2014a\sys\lcc64\lcc64\lib64" -entry LibMain -map sfun.map 
+LIBFLAGS = 
+
+OBJECTS = \
+	"RaspPiPilot_sfun.obj"\
+	"c1_RaspPiPilot.obj"\
+	"c2_RaspPiPilot.obj"\
+	"c3_RaspPiPilot.obj"\
+	"c4_RaspPiPilot.obj"\
+	"c5_RaspPiPilot.obj"\
+	"c6_RaspPiPilot.obj"\
+	"c8_RaspPiPilot.obj"\
+	"c10_RaspPiPilot.obj"\
+	"c13_RaspPiPilot.obj"\
+	"c14_RaspPiPilot.obj"\
+	"RaspPiPilot_sfun_registry.obj"\
+	"lccstub.obj"\
+	"RaspPiPilot_sfun.def"\
+	"C:\Program Files\MATLAB\R2014a\extern\lib\win64\microsoft\sf_runtime.lib"\
+	"C:\Program Files\MATLAB\R2014a\extern\lib\win64\microsoft\libmwblas.lib"\
+	"C:\Program Files\MATLAB\R2014a\extern\lib\win64\microsoft\libmx.lib"\
+	"C:\Program Files\MATLAB\R2014a\extern\lib\win64\microsoft\libmex.lib"\
+	"C:\Program Files\MATLAB\R2014a\extern\lib\win64\microsoft\libmat.lib"\
+	"C:\Program Files\MATLAB\R2014a\extern\lib\win64\microsoft\libfixedpoint.lib"\
+	"C:\Program Files\MATLAB\R2014a\extern\lib\win64\microsoft\libut.lib"\
+	"C:\Program Files\MATLAB\R2014a\extern\lib\win64\microsoft\libmwmathutil.lib"\
+	"C:\Program Files\MATLAB\R2014a\extern\lib\win64\microsoft\libemlrt.lib"\
+	"C:\Program Files\MATLAB\R2014a\extern\lib\win64\microsoft\libmwsl_log_load_blocks.lib"\
+	"C:\Program Files\MATLAB\R2014a\lib\win64\libippmwipt.lib"\
+
+INCLUDE_PATH= -I"C:\Program Files\MATLAB\R2014a\sys\lcc64\lcc64\include64"  -I"C:\Program Files\MATLAB\R2014a\extern\include"  -I"C:\Program Files\MATLAB\R2014a\simulink\include"  -I"C:\Program Files\MATLAB\R2014a\stateflow\c\mex\include"  -I"C:\Program Files\MATLAB\R2014a\rtw\c\src"  -I"c:\MATLAB\quad\include\slprj\_sfprj\RaspPiPilot\_self\sfun\src" 
+ 
+
+RaspPiPilot_sfun.mexw64 : $(MAKEFILE) $(OBJECTS)
+	$(LD) $(LDFLAGS) -o RaspPiPilot_sfun.mexw64 @RaspPiPilot_sfun.lmko
+RaspPiPilot_sfun.obj :	"RaspPiPilot_sfun.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "RaspPiPilot_sfun.c"
+c1_RaspPiPilot.obj :	"c1_RaspPiPilot.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "c1_RaspPiPilot.c"
+c2_RaspPiPilot.obj :	"c2_RaspPiPilot.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "c2_RaspPiPilot.c"
+c3_RaspPiPilot.obj :	"c3_RaspPiPilot.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "c3_RaspPiPilot.c"
+c4_RaspPiPilot.obj :	"c4_RaspPiPilot.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "c4_RaspPiPilot.c"
+c5_RaspPiPilot.obj :	"c5_RaspPiPilot.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "c5_RaspPiPilot.c"
+c6_RaspPiPilot.obj :	"c6_RaspPiPilot.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "c6_RaspPiPilot.c"
+c8_RaspPiPilot.obj :	"c8_RaspPiPilot.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "c8_RaspPiPilot.c"
+c10_RaspPiPilot.obj :	"c10_RaspPiPilot.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "c10_RaspPiPilot.c"
+c13_RaspPiPilot.obj :	"c13_RaspPiPilot.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "c13_RaspPiPilot.c"
+c14_RaspPiPilot.obj :	"c14_RaspPiPilot.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "c14_RaspPiPilot.c"
+RaspPiPilot_sfun_registry.obj :	"RaspPiPilot_sfun_registry.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "RaspPiPilot_sfun_registry.c"
+lccstub.obj :	"C:\Program Files\MATLAB\R2014a\sys\lcc64\lcc64\mex\lccstub.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "C:\Program Files\MATLAB\R2014a\sys\lcc64\lcc64\mex\lccstub.c"
