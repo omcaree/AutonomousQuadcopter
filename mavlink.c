@@ -27,9 +27,10 @@ fprintf(stderr,"HB sys status : %i \t mode %i \n",heartMsg.system_status,heartMs
 return heartMsg.base_mode;
 }
 
-uint8_t requestAttitude(uint8_t* buf){
-    mavlink_msg_request_data_stream_pack(255,0,&msgOut,1,0,10,50,1);
+uint8_t requestStream(uint8_t* buf,uint8_t id){
+    mavlink_msg_request_data_stream_pack(255,0,&msgOut,1,0,id,50,1);
     mavlink_msg_to_send_buffer(buf, &msgOut);
+   fprintf(stderr,"streamRequested %i",id);
     return msgOut.len+8;
 }
 
