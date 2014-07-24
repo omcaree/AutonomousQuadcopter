@@ -50,7 +50,7 @@ uint8_t sendArmDisarm(uint8_t* buf, uint8_t armdisarm){
     return msgOut.len+8;
 }
 
-uint8_t sendRPYT(uint8_t* buf,uint16_t R,uint16_t P,uint16_t T,uint16_t Y){
+uint8_t sendRPTY(uint8_t* buf,uint16_t R,uint16_t P,uint16_t T,uint16_t Y){
     uint16_t pack;
     uint16_t sendz;    
     pack= mavlink_msg_rc_channels_override_pack(255,0,&msgOut2,1,0,R,P,T,Y,0,0,0,0);  

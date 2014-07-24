@@ -27,10 +27,11 @@ while(1)
     end
     if button(joy,5)
         navOn=~navOn;
-        set_param('RaspPiPilot/joystickVals/Constant7','Value',num2str(navOn)); 
+        set_param('RaspPiPilot/joystickVals/Constant7','Value',num2str(navOn));
+        pause(1);
     end
     if button(joy,8)
         break;
     end
-    pause(0.2);
+    pause(1/50);
 end
