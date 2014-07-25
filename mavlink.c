@@ -41,7 +41,46 @@ void getRoll(double *roll){
 void getPitch(double *pitch){
     double pitch2 =(double)mavlink_msg_attitude_get_pitch(&msg);
     *pitch =  pitch2;
+   
 }
+void getYaw(double *yaw){
+    double yaw2 =(double)mavlink_msg_attitude_get_yaw(&msg);
+    *yaw =  yaw2;    
+}
+void parseIMU(double *xxacc, double *yyacc, double *zzacc, double *xxGyro, double *yyGyro, double *zzGyro, double *t){
+    uint32_t timestamp = mavlink_msg_raw_imu_get_time_usec(&msg);
+ double xacc =(double)mavlink_msg_raw_imu_get_xacc(&msg); ///< X Position
+ double yacc=(double)mavlink_msg_raw_imu_get_yacc(&msg); ///< Y Position
+ double zacc=(double)mavlink_msg_raw_imu_get_zacc(&msg); ///< Z Position
+ double xGyro=(double)mavlink_msg_raw_imu_get_xgyro(&msg); ///< X Speed
+ double yGyro=(double)mavlink_msg_raw_imu_get_ygyro(&msg); ///< Y Speed
+ double zGyro=(double)mavlink_msg_raw_imu_get_zgyro(&msg);// hmm i wonder what this is
+ *xxacc=xacc;
+ *yyacc=yacc;
+ *zzacc=zacc;
+ *xxGyro=xGyro;
+ *yyGyro=yGyro;
+ *zzGyro=zGyro;
+ }
+
+void parseControllerOutput(double *nav_roll,double *nav_pitch,double *alt_error,double *aspd_error, int16_t *nav_bearing,int16_t *target_bearing, uint16_t *wp_dist) {
+ double nav_roll_a= (double)mavlink_msg_nav_controller_output_get_nav_roll(&msg); ///< Current desired roll in degrees
+ double nav_pitch_a=(double) mavlink_msg_nav_controller_output_get_nav_pitch(&msg); ///< Current desired pitch in degrees
+ double alt_error_a= (double)mavlink_msg_nav_controller_output_get_nav_bearing(&msg); ///< Current altitude error in meters
+ double aspd_error_a=(double) mavlink_msg_nav_controller_output_get_target_bearing(&msg); ///< Current airspeed error in meters/second
+ double xtrack_error_a= (double)mavlink_msg_nav_controller_output_get_wp_dist(&msg); ///< Current crosstrack error on x-y plane in meters
+ int16_t nav_bearing_a=(double) mavlink_msg_nav_controller_output_get_alt_error(&msg); ///< Current desired heading in degrees
+ int16_t target_bearing_a=(double) mavlink_msg_nav_controller_output_get_aspd_error(&msg); ///< Bearing to current MISSION/target in degrees
+ uint16_t wp_dist_a= (double)mavlink_msg_nav_controller_output_get_xtrack_error(&msg); ///< Distance to active MISSION in meters
+*nav_roll= nav_roll_a; 
+*nav_pitch =nav_pitch_a;
+*alt_error =alt_error_a;
+*aspd_error =aspd_error_a;
+*nav_bearing =nav_bearing_a;
+*target_bearing =target_bearing_a;
+*wp_dist=wp_dist_a;
+}
+
 uint8_t sendArmDisarm(uint8_t* buf, uint8_t armdisarm){
     float ad = (float)armdisarm;
     mavlink_msg_command_long_pack(255,0,&msgOut,1,250,400,0,
