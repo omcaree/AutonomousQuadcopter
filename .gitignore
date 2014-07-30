@@ -2,3 +2,4 @@ slprj/
 *_rtt/
 *.mexw64
 *.slx.original
+*.slx.autosave
